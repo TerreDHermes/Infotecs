@@ -2,16 +2,17 @@ package repository
 
 import "github.com/jmoiron/sqlx"
 
-type Create interface {
-	CreateUser() (int, float64, error)
+type Wallet interface {
+	CreateWallet() (int, float64, error)
+	SearchId(walletId int) (int, float64, error)
 }
 
 type Repository struct {
-	Create
+	Wallet
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Create: NewCreatePostgres(db),
+		Wallet: NewCreatePostgres(db),
 	}
 }
