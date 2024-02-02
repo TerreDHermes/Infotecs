@@ -22,7 +22,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		walletsOperation := wallets.Group("/:walletId", h.WalletIdentity)
 		{
-			walletsOperation.POST("/send")
+			walletsOperation.POST("/send", h.Send)
 			walletsOperation.GET("/history")
 			walletsOperation.GET("/", h.WalletInfo)
 		}

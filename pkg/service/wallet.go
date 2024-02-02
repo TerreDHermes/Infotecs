@@ -15,5 +15,10 @@ func (s *CreateService) CreateWallet() (int, float64, error) {
 }
 
 func (s *CreateService) SearchId(walletId int) (int, float64, error) {
+
 	return s.repo.SearchId(walletId)
+}
+
+func (s *CreateService) Send(walletFromId int, walletToId int, Amount float64) error {
+	return s.repo.Send(walletFromId, walletToId, Amount)
 }

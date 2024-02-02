@@ -5,6 +5,7 @@ import "Infotecs/pkg/repository"
 type Wallet interface {
 	CreateWallet() (int, float64, error)
 	SearchId(walletId int) (int, float64, error)
+	Send(walletFromId int, walletToId int, Amount float64) error
 }
 type Service struct {
 	Wallet
