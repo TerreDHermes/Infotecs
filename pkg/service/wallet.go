@@ -1,6 +1,9 @@
 package service
 
-import "Infotecs/pkg/repository"
+import (
+	"Infotecs"
+	"Infotecs/pkg/repository"
+)
 
 type CreateService struct {
 	repo repository.Wallet
@@ -21,4 +24,8 @@ func (s *CreateService) SearchId(walletId int) (int, float64, error) {
 
 func (s *CreateService) Send(walletFromId int, walletToId int, Amount float64) error {
 	return s.repo.Send(walletFromId, walletToId, Amount)
+}
+
+func (s *CreateService) TransactionsInfo(walletId int) ([]Infotecs.TransactionInfo, error) {
+	return s.repo.TransactionsInfo(walletId)
 }

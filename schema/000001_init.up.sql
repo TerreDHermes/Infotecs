@@ -7,7 +7,7 @@ CREATE TABLE wallets (
 -- Создание таблицы транзакций
 CREATE TABLE transactions (
                               id SERIAL PRIMARY KEY,
-                              time TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+                              time TIMESTAMPTZ DEFAULT now(),
                               wallet_from_id INT,
                               wallet_to_id INT,
                               amount DECIMAL(10,2),

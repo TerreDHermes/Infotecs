@@ -4,6 +4,7 @@ import (
 	"Infotecs"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
+	"time"
 )
 
 type WalletPostgres struct {
@@ -36,6 +37,10 @@ func (r *WalletPostgres) SearchId(walletId int) (int, float64, error) {
 }
 
 func (r *WalletPostgres) Send(walletFromId int, walletToId int, Amount float64) error {
+	timeFormatted, err2 := getCurrentTimeFormatted("Europe/Moscow")
+	if err2 != nil {
+		return err2
+	}
 	// Выполнение транзакции
 	tx, err := r.db.Begin()
 	if err != nil {
@@ -60,12 +65,50 @@ func (r *WalletPostgres) Send(walletFromId int, walletToId int, Amount float64) 
 	}
 
 	// Запись транзакции в таблицу transactions
-	query := "INSERT INTO transactions (wallet_from_id, wallet_to_id, amount) VALUES ($1, $2, $3)"
-	tx.QueryRow(query, walletFromId, walletToId, Amount)
+	query := "INSERT INTO transactions (time, wallet_from_id, wallet_to_id, amount) VALUES ($1, $2, $3, $4)"
+	tx.QueryRow(query, timeFormatted, walletFromId, walletToId, Amount)
 
 	// Фиксация транзакции
 	if err := tx.Commit(); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (r *WalletPostgres) TransactionsInfo(walletId int) ([]Infotecs.TransactionInfo, error) {
+	// Запрос истории транзакций
+	rows, err := r.db.Query(`
+        SELECT time, wallet_from_id, wallet_to_id, amount
+        FROM transactions
+        WHERE wallet_from_id = $1 OR wallet_to_id = $1
+        ORDER BY time DESC
+    `, walletId)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var transactions []Infotecs.TransactionInfo
+	var timeUTC time.Time
+	for rows.Next() {
+		var transaction Infotecs.TransactionInfo
+		if err := rows.Scan(&timeUTC, &transaction.From, &transaction.To, &transaction.Amount); err != nil {
+			return nil, err
+		}
+		// Приводим время к нужному часовому поясу
+		location, err := time.LoadLocation("Europe/Moscow")
+		if err != nil {
+			return nil, err
+		}
+		transaction.Time = timeUTC.In(location).Format(time.RFC3339)
+		transactions = append(transactions, transaction)
+	}
+	return transactions, nil
+}
+
+func getCurrentTimeFormatted(timezone string) (string, error) {
+	location, err := time.LoadLocation(timezone)
+	if err != nil {
+		return "", err
+	}
+	return time.Now().In(location).Format(time.RFC3339), nil
 }
