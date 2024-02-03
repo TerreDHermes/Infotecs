@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  infotecs:
+    build: ./
+    command: ./wait-for-postgres.sh db ./Infotecs
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - DB_PASSWORD=qwerty
+
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+      -  ./init-scripts:/docker-entrypoint-initdb.d
+      - ./.database/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=qwerty
+    ports:
+      - 5436:5432
