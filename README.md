@@ -63,3 +63,13 @@ curl -X GET http://localhost:8000/api/v1/wallet/2/
 <div align="center">
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/get_info_wallet.png" alt="Описание изображения" style="width: 70%;">
 </div>
+
+# База данных
+volumes:
+      -  ./init-scripts:/docker-entrypoint-initdb.d
+      - ./.database/postgres/data:/var/lib/postgresql/data
+
+      
+При сборке, таблицы импортируются из папки init-scripts. "Идёт" использование функциональности docker-entrypoint-initdb.d. Эта директория в контейнере PostgreSQL предназначена для скриптов инициализации базы данных.
+
+./.database/postgres/data - по этому пути от корневого каталога проекта будет располагаться том для хранения данных Postgres (персистентность).
