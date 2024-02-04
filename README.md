@@ -6,7 +6,7 @@
 ```bash
 docker-compose up --build infotecs
 ```
-Приложение запуститься сразу успешно, так как добавлен скрипт wait-for-postgres.sh, который не даёт запуститься серверу до запуска базы данных.
+Приложение запуститься успешно с первого раза, так как добавлен скрипт wait-for-postgres.sh, который не даёт запуститься серверу до запуска базы данных.
 
 # Эндпоинты
 Приложение слушает на 8000 порту (localhost).
@@ -16,6 +16,8 @@ docker-compose up --build infotecs
 ```bash
 curl -X POST http://localhost:8000/api/v1/wallet
 ```
+Тут выполняется создание кошелька. Ответ содержит JSON-объект с состоянием созданного кошелька. 
+Аналогичный запрос в Postman:
 
 <div align="center">
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/post_create.png" alt="Описание изображения" style="width: 70%;">
