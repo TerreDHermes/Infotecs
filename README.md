@@ -8,7 +8,10 @@ docker-compose up --build infotecs
 Приложение слушает на 8000 порту (localhost).
 
 ## Создание кошелька
-
+Пример запроса (Windows и Linux):
+```bash
+curl -X POST http://localhost:8000/api/v1/wallet
+```
 ## Перевод средств с одного кошелька на другой
 
 ## Получение историй входящих и исходящих транзакций
