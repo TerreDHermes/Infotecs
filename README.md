@@ -12,6 +12,9 @@ docker-compose up --build infotecs
 ```bash
 curl -X POST http://localhost:8000/api/v1/wallet
 ```
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/post_create.png" alt="Описание изображения" style="width: 70%;">
+</div>
 ## Перевод средств с одного кошелька на другой
 Пример запроса в консоли:
 ```bash
