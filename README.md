@@ -22,13 +22,27 @@ curl -X POST http://localhost:8000/api/v1/wallet
 ```bash
 curl -X POST -d "{\"to\":1,\"amount\":50}" http://localhost:8000/api/v1/wallet/2/send
 ```
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/send.png" alt="Описание изображения" style="width: 70%;">
+</div>
+
 ## Получение историй входящих и исходящих транзакций
 Пример запроса в консоли:
 ```bash
 curl -X GET http://localhost:8000/api/v1/wallet/2/history
 ```
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/His.png" alt="Описание изображения" style="width: 70%;">
+</div>
+
 ## Получение текущего состояния кошелька
 Пример запроса в консоли:
 ```bash
 curl -X GET http://localhost:8000/api/v1/wallet/2/
 ```
+
+<div align="center">
+  <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/get_info_wallet.png" alt="Описание изображения" style="width: 70%;">
+</div>
