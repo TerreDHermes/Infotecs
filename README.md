@@ -5,6 +5,7 @@
 docker-compose up --build infotecs
 
 # Эндпоинты
+Приложение слушает на 8000 порту (localhost).
 
 ## Создание кошелька
 
