@@ -51,6 +51,8 @@ curl -X GET http://localhost:8000/api/v1/wallet/2/history
 ```bash
 curl -X GET http://localhost:8000/api/v1/wallet/2/
 ```
+Отображение текущего состояния кошелька. Ответ с статусом 200 если кошелек найден, 404 если кошелек не найден. Ответ содержит в теле JSON-объект с текущим состоянием кошелька.
+Пример запроса в Postman для кошелька с id=1:
 
 <div align="center">
   <img src="https://github.com/TerreDHermes/TerreDHermes/blob/main/assets/get_info_wallet.png" alt="Описание изображения" style="width: 70%;">
