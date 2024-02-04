@@ -18,5 +18,8 @@ curl -X POST http://localhost:8000/api/v1/wallet
 curl -X POST -d "{\"to\":1,\"amount\":50}" http://localhost:8000/api/v1/wallet/2/send
 ```
 ## Получение историй входящих и исходящих транзакций
-
+Пример запроса:
+```bash
+curl -X GET http://localhost:8000/api/v1/wallet/2/history
+```
 ## Получение текущего состояния кошелька
