@@ -65,7 +65,7 @@ curl -X GET http://localhost:8000/api/v1/wallet/2/
 </div>
 
 # База данных
-volumes:
+ volumes:
 
       -  ./init-scripts:/docker-entrypoint-initdb.d
       
