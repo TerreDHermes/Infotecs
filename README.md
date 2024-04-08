@@ -18,7 +18,7 @@ docker-compose up --build infotecs
 Приложение слушает на 8000 порту (localhost).
 
 ## Создание кошелька
-Пример запроса в консоли:
+Пример запроса в консоли (начальный баланс у всех 100 по заданию):
 ```bash
 curl -X POST http://localhost:8000/api/v1/wallet
 ```
