@@ -6,13 +6,14 @@ import (
 	"Infotecs/pkg/repository"
 	"Infotecs/pkg/service"
 	"context"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {
@@ -48,7 +49,7 @@ func main() {
 		}
 	}()
 
-	logrus.Print("TodoApp Started")
+	logrus.Print("Programm Started")
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
