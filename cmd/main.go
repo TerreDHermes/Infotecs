@@ -48,8 +48,11 @@ func main() {
 			logrus.Fatalf("error occured while running http server: %s", err.Error())
 		}
 	}()
+	logrus.Print("Programm Started - viktor0. To Viktor")
 
-	logrus.Print("Programm Started")
+	logrus.Print("Programm Started - viktor2. New2")
+
+	logrus.Print("Programm Started - viktor2. Alex")
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
