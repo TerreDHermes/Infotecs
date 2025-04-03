@@ -49,7 +49,7 @@ func main() {
 		}
 	}()
 
-	logrus.Print("Programm Started - viktor2")
+	logrus.Print("Programm Started - viktor2. New2")
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
