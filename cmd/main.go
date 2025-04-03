@@ -48,6 +48,7 @@ func main() {
 			logrus.Fatalf("error occured while running http server: %s", err.Error())
 		}
 	}()
+	logrus.Print("Programm Started - viktor0. To Viktor")
 
 	logrus.Print("Programm Started - viktor2. New2")
 
